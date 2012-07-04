@@ -1,4 +1,4 @@
-#Eggnog
+##Eggnog
 
 [![travis](https://secure.travis-ci.org/rclosner/eggnog.png)](http://travis-ci.org/rclosner/eggnog)
 
@@ -6,8 +6,7 @@
 
 Eggnog is a Nokogiri XML Node Class mixin that implements Node#to_hash
 
-Installation
-============
+##Installation
 
 ```ruby
   gem install eggnog
@@ -46,7 +45,8 @@ returns:
   }
 ```
 
-##With Options
+With Options
+============
 
 Preserve XML attributes:
 
