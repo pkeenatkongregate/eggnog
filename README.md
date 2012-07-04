@@ -17,17 +17,17 @@ Usage
 
 ##XML
 
-```ruby
-  xml =<<DOC
+```
   <root>
     <foo bar='baz'>Some text value</foo>
   </root>
-  DOC
 ```
     
 ```ruby
   node = Nokogiri::XML(xml)
 ```
+
+##Default Behavior
 
 ```ruby
   node.to_hash
@@ -42,6 +42,8 @@ returns:
     } 
   }
 ```
+
+##With Options
 
 Preserve XML attributes:
 
