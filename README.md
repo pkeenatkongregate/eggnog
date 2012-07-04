@@ -1,24 +1,65 @@
-# Eggnog
+Eggnog
+======
 
-TODO: Write a gem description
+[![travis](https://secure.travis-ci.org/rclosner/eggnog.png)](http://travis-ci.org/rclosner/eggnog)
 
-## Installation
+<img src="https://github.com/rclosner/eggnog/raw/master/eggnog.jpg" width="200px" />
 
-Add this line to your application's Gemfile:
+Eggnog is a Nokogiri XML Node Class mixin that implements Node#to_hash
 
-    gem 'eggnog'
+Installation
+============
 
-And then execute:
+  gem install eggnog
 
-    $ bundle
+Usage
+=====
 
-Or install it yourself as:
+##XML
 
-    $ gem install eggnog
+```ruby
+  xml =<<DOC
+  <root>
+    <foo bar='baz'>Some text value</foo>
+  </root>
+  DOC
+```
+    
+```ruby
+  node = Nokogiri::XML(xml)
+```
 
-## Usage
+```ruby
+  node.to_hash
+```
 
-TODO: Write usage instructions here
+returns:
+
+```ruby
+  {
+    "root" => {
+      "foo" => "Some text value" 
+    } 
+  }
+```
+
+Preserve XML attributes:
+
+```ruby
+  node.to_hash(:preserve_attributes => true)
+```
+returns
+
+```ruby
+  { 
+    "root" => {
+      "foo" => { 
+        "__content__" => "Some text value", 
+        "bar" => "baz" 
+      } 
+    } 
+  }
+```
 
 ## Contributing
 
