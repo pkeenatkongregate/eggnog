@@ -47,7 +47,7 @@ which returns:
 Preserve XML attributes:
 
 ```ruby
-  Eggnog::Xml.parse(xml, :preserve_attributes => true)
+  Eggnog::XML.parse(xml, :preserve_attributes => true)
 ```
 returns:
 
