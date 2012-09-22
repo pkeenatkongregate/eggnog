@@ -4,7 +4,7 @@
 
 <img src="https://github.com/rclosner/eggnog/raw/master/eggnog.jpg" width="200px" />
 
-Eggnog is a Nokogiri XML Node Class mixin that implements Node#to_hash
+Eggnog makes parsing XML easy 
 
 ## Installation
 
@@ -23,33 +23,21 @@ Eggnog is a Nokogiri XML Node Class mixin that implements Node#to_hash
     <foo bar='baz'>Some text value</foo>
   </root>
 ```
-    
-```ruby
-  node = Nokogiri::XML(xml)
-```
-
-# Default Behavior
-
-```ruby
-  node.to_hash
-```
-
 returns:
 
 ```ruby
   {
     "root" => {
-      "foo" => "Some text value" 
-    } 
+      "foo" => "Some text value"
+    }
   }
-```
 
 # With Options
 
 Preserve XML attributes:
 
 ```ruby
-  node.to_hash(:preserve_attributes => true)
+  Eggnog::Xml.parse(xml, :preserve_attributes => true)
 ```
 returns:
 
