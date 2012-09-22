@@ -4,7 +4,7 @@
 
 <img src="https://github.com/rclosner/eggnog/raw/master/eggnog.jpg" width="200px" />
 
-Eggnog makes parsing XML easy 
+A fast XML and JSON parser.
 
 ## Installation
 
@@ -18,21 +18,31 @@ Eggnog makes parsing XML easy
 # XML
 
 
+Easily parse the following XML:
 ```
-  <root>
-    <foo bar='baz'>Some text value</foo>
-  </root>
+  xml =<<DOC
+  <?xml version="1.0"?>
+  <foo>
+    <bar baz="boo">Some text value</foo>
+  </foo>
+  DOC
 ```
-returns:
 
+like this:
+```ruby
+Eggnog::XML.parse(xml)
+```
+
+which returns:
 ```ruby
   {
-    "root" => {
-      "foo" => "Some text value"
+    "foo" => {
+      "bar" => "Some text value"
     }
   }
+```
 
-# With Options
+# Additional Options
 
 Preserve XML attributes:
 
@@ -43,10 +53,10 @@ returns:
 
 ```ruby
   { 
-    "root" => {
-      "foo" => { 
+    "foo" => {
+      "bar" => { 
         "__content__" => "Some text value", 
-        "bar" => "baz" 
+        "baz" => "boo" 
       } 
     } 
   }
