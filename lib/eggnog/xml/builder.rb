@@ -5,7 +5,7 @@ module Eggnog
       CONTENT_KEY = "__content__".freeze
       DEFAULT_OPTIONS = {
         :preserve_attributes => false,
-        :include_root        => true 
+        :include_root        => false 
       }.freeze
 
       def initialize(xml, options)
@@ -60,19 +60,23 @@ module Eggnog
         node_contents = hashify_node_contents
 
         if options[:preserve_attributes]
-          node_attributes = hashify_node_attributes 
+          unless node.root? && !options[:include_root]
+            node_attributes = hashify_node_attributes 
 
-          if node_attributes.empty?
-            output = node_contents
-          else
-            output = node_attributes
+            if node_attributes.empty?
+              output = node_contents
+            else
+              output = node_attributes
 
-            if node_contents 
-              output[CONTENT_KEY] = node_contents
+              if node_contents 
+                output[CONTENT_KEY] = node_contents
+              end
             end
-          end
 
-          output
+            output
+          else
+            node_contents
+          end
         else
           node_contents
         end || {}

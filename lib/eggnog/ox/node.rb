@@ -29,7 +29,7 @@ module Eggnog
       # @return [ Object ]
       # @api public
       def content 
-        has_children? ? children : object.nodes.first
+        (has_children? ? children : object.nodes.first) || {}
       end
 
       # Convenience method to access object child nodes

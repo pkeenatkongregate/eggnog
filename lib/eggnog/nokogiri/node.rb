@@ -24,6 +24,21 @@ module Eggnog
         end 
       end
 
+      def content
+        object_content = object.content
+
+        case object_content
+        when String
+          if object_content.size > 0
+            object_content
+          else
+            {}
+          end
+        else
+          object_content
+        end
+      end
+
       # Convenience method to access object child nodes
       # @return [ Array ]
       # @api public

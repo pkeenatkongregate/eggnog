@@ -20,10 +20,7 @@ shared_examples_for "an XML Builder" do
         let(:options) { { :preserve_attributes => true } }
         let(:expected_hash) do
           { 
-            "version"     => "1.0", 
-            "__content__" => { 
-              "foo" => "bar"
-            }
+            "foo" => "bar"
           }
         end
 
@@ -40,10 +37,7 @@ shared_examples_for "an XML Builder" do
       context "when preserve attributes is true" do
         let(:options) { { :preserve_attributes => true } }
         let(:expected_hash) do
-          { 
-            "version"     => "1.0", 
-            "__content__" => { }
-          }
+          {}
         end
 
         it { should eql(expected_hash) }
@@ -60,9 +54,7 @@ shared_examples_for "an XML Builder" do
       context "when preserve attributes is true" do
         let(:options) { { :preserve_attributes => true } }
         let(:expected_hash) do
-          { 
-            "version"     => "1.0"
-          }
+          {}
         end
 
         it { should eql(expected_hash) }
@@ -80,10 +72,7 @@ shared_examples_for "an XML Builder" do
         let(:options) { { :preserve_attributes => true } }
         let(:expected_hash) do
           { 
-            "version"     => "1.0", 
-            "__content__" => { 
-              "foo" => {}
-            }
+            "foo" => {}
           }
         end
 
@@ -102,13 +91,10 @@ shared_examples_for "an XML Builder" do
         let(:options) { { :preserve_attributes => true } }
         let(:expected_hash) do
           { 
-            "version"     => "1.0", 
-            "__content__" => {
-              "top" => {
-                "name"        => "Bob", 
-                "__content__" => {
-                  "second" => "Second"
-                }
+            "top" => {
+              "name"        => "Bob", 
+              "__content__" => {
+                "second" => "Second"
               }
             }
           }
@@ -142,15 +128,17 @@ shared_examples_for "an XML Builder" do
         let(:options) { { :preserve_attributes => true } }
         let(:expected_hash) do
           {
-            "version"     => "1.0", 
-            "__content__" => {
-              "Park.Animal" => {
-                "type"   => "mutant", 
-                "friends"=> {
-                  "type" => "Hash", 
-                  "__content__" => {
-                    "i" => "5", 
-                    "Park.Animal"=>{"type"=>"dog"}}}}}}
+            "Park.Animal" => {
+              "type"   => "mutant", 
+              "friends"=> {
+                "type" => "Hash", 
+                "__content__" => {
+                  "i" => "5", 
+                  "Park.Animal"=>{"type"=>"dog"}
+                }
+              }
+            }
+          }
         end
 
         it { should eql(expected_hash) }
