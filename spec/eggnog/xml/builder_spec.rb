@@ -1,5 +1,5 @@
 require "spec_helper"
-require "nokogiri"
+require "eggnog/nokogiri"
 
 describe Eggnog::XML::Builder do
 
