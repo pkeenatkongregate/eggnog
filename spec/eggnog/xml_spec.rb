@@ -5,7 +5,7 @@ describe Eggnog::XML do
     let(:xml)     { '<?xml version="1.0"?><foo/>' }
     let(:options) { {} }
 
-    it "returns a Hash" do
+   it "returns a Hash" do
       described_class.parse(xml, options).should be_a(Hash)
     end
   end
