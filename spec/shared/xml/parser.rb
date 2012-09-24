@@ -8,6 +8,8 @@ shared_examples_for "an XML parser" do
     end
   end
 
+  let(:preserve_attributes) { { :preserve_attributes => true } }
+
   describe ".parse" do
     let(:xml)     { '' }
     let(:options) { {} }
@@ -59,23 +61,57 @@ shared_examples_for "an XML parser" do
 
       context "with an attribute" do
         let(:xml) { fixture_file("attribute.xml") }
-        let(:expected) do
-          { "user" => { } }
+
+        context "when preserve_attributes = false" do
+          let(:expected) do
+            { "user" => { } }
+          end
+          it { should eql(expected) }
         end
 
-        it { should eql(expected) }
-
-        context "with options" do
-          context "when preserve attributes = true" do
-            let(:options) { { :preserve_attributes => true } }
-            let(:expected) do
-              { "user" => { "name" => "John Doe" } }
-            end
-            it { should eql(expected) }
+        context "when preserve attributes = true" do
+          let(:options) { preserve_attributes }
+          let(:expected) do
+            { "user" => { "name" => "John Doe" } }
           end
+          it { should eql(expected) }
         end
       end
-    end
 
-  end
-end
+      context "with multiple attributes" do
+        let(:xml) { fixture_file("multiple_attributes.xml") }
+
+        context "when preserve_attributes = false" do
+          let(:expected) do
+            { "user" => {} }
+          end
+          it { should eql(expected) }
+        end
+
+        context "when preserve_attributes = true" do
+          let(:options) { preserve_attributes }
+          let(:expected) do
+            { "user" => { "name" => "John Doe", "screen_name" => "john_doe" } }
+          end
+          it { should eql(expected) }
+        end
+      end
+
+      context "when symbolize_keys = true" do
+        let(:xml)     { fixture_file("symbolize_keys.xml") }
+        let(:options) { { :symbolize_keys => true } }
+        let(:expected) do
+          { 
+            :user => {
+              :name    => "John Doe",
+              :age     => "50",
+              :zipcode => "98122"
+            } 
+          }
+        end
+        it { should eql(expected)}
+      end
+
+    end # context 'valid xml'
+  end # .parse
+end # shared_examples
