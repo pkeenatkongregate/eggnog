@@ -23,7 +23,7 @@ Easily parse the following XML:
   xml =<<DOC
   <?xml version="1.0"?>
   <foo>
-    <bar baz="boo">Some text value</foo>
+    <bar baz="boo">Some text value</bar>
   </foo>
   DOC
 ```
